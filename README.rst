@@ -277,7 +277,7 @@ encapsulate your business logic and error handling.  Here's an example:
     def redeem(order_number, user, amount):
         # Get user's non-empty accounts ordered with the first to expire first
         accounts = models.Account.active.filter(
-            user=user, balance__gt=0).order_by('end_date')
+            primary_user=user, balance__gt=0).order_by('end_date')
 
         # Build up a list of potential transfers that cover the requested amount
         transfers = []
